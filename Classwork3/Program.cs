@@ -130,7 +130,7 @@ namespace Classworks
         {
             Console.WriteLine("Enter list of numbers");
             string str = Console.ReadLine();
-            string[] mas = str.Split(' ');
+            string[] mas = str.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int sum = 0;
             int numQuantity = 0;
             foreach (string m in mas)
@@ -189,17 +189,22 @@ namespace Classworks
         {
             Console.WriteLine("Enter a number");
             char[] numbers = Console.ReadLine().ToCharArray();
+
+            bool areAllOdd = true;
             foreach (char ch in numbers)
             {
                 if (int.Parse(ch.ToString()) % 2 == 0)
                 {
-                    Console.WriteLine($"{int.Parse(ch.ToString())} is not an odd number");
+                    areAllOdd = false;
+                    
+                    break;
                 }
-                else
-                {
-                    Console.WriteLine("All digits in your number are odd");
-                }
+                
             }
+
+            string not = "not";
+
+            Console.WriteLine($"All digits of entered number are {(areAllOdd ? string.Empty : not) } odd ");
         }
     }
 
